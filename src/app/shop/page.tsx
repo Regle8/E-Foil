@@ -8,8 +8,6 @@ import { faqs } from "@/data/content";
 import { getCatalog } from "@/lib/catalog";
 import { videos } from "@/lib/media";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "Shop LIFT eFoils, wings & accessories",
   description:

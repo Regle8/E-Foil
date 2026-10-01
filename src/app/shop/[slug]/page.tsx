@@ -15,8 +15,6 @@ import { videos } from "@/lib/media";
 import { site } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
-export const revalidate = 300;
-
 const categoryLabel: Record<Product["category"], string> = {
   efoils: "eFoils",
   wings: "Wings",

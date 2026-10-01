@@ -228,3 +228,19 @@ export async function placeOrder(_prev: FormState, fd: FormData): Promise<FormSt
 
   redirect(checkoutUrl ?? `/checkout/success?ref=${reference}`);
 }
+
+/** Whether a Stripe Checkout session has been paid (used on the order confirmation page). */
+export async function getPaymentStatus(sessionId: string): Promise<boolean> {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key || !/^cs_[A-Za-z0-9_]+$/.test(sessionId)) return false;
+  try {
+    const res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
+      headers: { Authorization: `Bearer ${key}` },
+      cache: "no-store",
+    });
+    const json = (await res.json()) as { payment_status?: string };
+    return json.payment_status === "paid";
+  } catch {
+    return false;
+  }
+}

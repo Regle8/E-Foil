@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { CartDrawer } from "@/components/layout/CartDrawer";
+import { DemoBadge } from "@/components/layout/DemoBadge";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { isDemo } from "@/lib/base-path";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -47,6 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
+  // The GitHub Pages demo must not compete with the real site in search results.
+  robots: isDemo ? { index: false, follow: false } : undefined,
 };
 
 export const viewport: Viewport = {
@@ -94,6 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
           <CartDrawer />
         </SmoothScroll>
+        <DemoBadge />
       </body>
     </html>
   );

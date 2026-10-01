@@ -18,7 +18,7 @@ const legacyProducts: Record<string, string> = {
   "/shop-efoil-wings/p/21-florence": "/shop/21-florence-x",
 };
 
-const nextConfig: NextConfig = {
+const serverConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],
@@ -56,4 +56,17 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// GITHUB_PAGES=true builds a static demo of the site for GitHub Pages. There is no server there, so
+// forms are swapped for a demo stub, images are served as-is under the repo sub-path, and
+// redirects/headers are dropped (static hosting can't apply them). The normal build is untouched.
+const pagesBasePath = process.env.PAGES_BASE_PATH ?? "";
+const pagesConfig: NextConfig = {
+  output: "export",
+  basePath: pagesBasePath,
+  trailingSlash: true,
+  env: { NEXT_PUBLIC_BASE_PATH: pagesBasePath, NEXT_PUBLIC_DEMO: "1" },
+  images: { loader: "custom", loaderFile: "./src/lib/static-image-loader.ts" },
+  turbopack: { resolveAlias: { "@/app/actions": "./src/demo/actions.ts" } },
+};
+
+export default process.env.GITHUB_PAGES === "true" ? pagesConfig : serverConfig;

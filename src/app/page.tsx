@@ -17,8 +17,6 @@ import { videos } from "@/lib/media";
 import { site } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
-export const revalidate = 300;
-
 const teaserSlugs = ["lift5-4-9-sport", "liftx-4-8", "elite-hand-controller", "lcs-lift-jet"];
 
 export default async function HomePage() {

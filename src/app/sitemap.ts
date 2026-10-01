@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getCatalog } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = ["", "/lessons", "/london", "/lift5", "/liftx", "/shop", "/used", "/what-is-an-efoil", "/about", "/contact", "/terms", "/privacy"];

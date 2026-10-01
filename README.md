@@ -34,6 +34,12 @@ Old Squarespace URLs (for example `/lift-efoils-lift5` or `/shop-efoil-wings/p/.
 - To add a new loop: `ffmpeg -i in.mp4 -an -vf "scale=1280:720,format=yuv420p" -c:v libx264 -preset slow -crf 27 -movflags +faststart public/video/new-720.mp4`, then add it to `src/lib/media.ts`.
 - Images: `public/images/photos` (editorial), `public/images/shop/<slug>` (product shots, per colour), `public/brand` (logos, rider mark sprite).
 
+## GitHub Pages demo
+
+A static demo is published to GitHub Pages on every push to `main` (`.github/workflows/pages.yml`). It's for showing the design only: forms and checkout show a "demo preview" message instead of submitting, and search engines are told not to index it.
+
+The demo mode is switched on with `GITHUB_PAGES=true` (see `next.config.ts`): static export under the repo sub-path, a stub in place of the server actions (`src/demo/actions.ts`), and `scripts/prepare-pages.mjs` to make the export servable by static hosting. The normal build, used for the live site on Vercel, is unaffected.
+
 ## Scripts
 
 ```bash

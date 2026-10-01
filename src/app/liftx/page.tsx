@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { ProductLine } from "@/components/line/ProductLine";
 import { getProducts } from "@/lib/catalog";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "LIFTX hybrid eFoil: where surf meets powered foil",
   description:

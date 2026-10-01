@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { ProductLine } from "@/components/line/ProductLine";
 import { getProducts } from "@/lib/catalog";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "LIFT5 eFoil: the ride, redefined",
   description:

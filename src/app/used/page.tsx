@@ -8,8 +8,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { getCatalog } from "@/lib/catalog";
 import { videos } from "@/lib/media";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "Used Not Abused: pre-owned LIFT eFoils",
   description:

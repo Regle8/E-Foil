@@ -14,8 +14,6 @@ import { getProducts } from "@/lib/catalog";
 import { videos } from "@/lib/media";
 import { site } from "@/lib/site";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "eFoil Lessons in London & Hayling Island",
   description:

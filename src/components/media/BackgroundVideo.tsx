@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { withBase } from "@/lib/base-path";
 import { cn } from "@/lib/format";
 import type { VideoAsset } from "@/lib/media";
 import { Icon } from "@/components/ui/Icon";
@@ -40,7 +41,7 @@ export function BackgroundVideo({
   const [paused, setPaused] = useState(false);
 
   const pickSource = useCallback(
-    () => (video.srcHd && window.matchMedia("(min-width: 1024px)").matches ? video.srcHd : video.src),
+    () => withBase(video.srcHd && window.matchMedia("(min-width: 1024px)").matches ? video.srcHd : video.src),
     [video]
   );
 
